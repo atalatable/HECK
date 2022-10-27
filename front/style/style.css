@@ -120,7 +120,7 @@ main {
     flex-direction: column;
     gap: 1em;
     margin: 1em auto;
-    width: 100%;
+    width: var(--page-width);
     max-width: 75%;
     height: 100%;
 }
@@ -147,6 +147,19 @@ main section hr {
     margin-bottom: 0.35em;
 }
 
+main #menu-profile img {
+    border-radius: 100%;
+    margin-bottom: 20px;
+}
+
+main #menu-profile {
+    text-align: center;
+}
+
+main #menu-profile .socials i {
+    font-size: 40px;
+}
+
 main section.wrapper .content {
     display: flex;
     gap: 1.5em;
@@ -156,7 +169,7 @@ main section.wrapper .content {
 
 main section.wrapper .content img {
     height: 128px;
-    border-radius: 100vh;
+    border-radius: 100%;
 }
 
 main section.wrapper h2 {
