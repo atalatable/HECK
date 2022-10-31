@@ -1,86 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
 
-        <link rel="stylesheet" href="/style/style.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script defer src="/js/main.js"></script>
+</head>
+
+<body>
+    <header>
         <nav>
             <div id="nav-container">
-                <h1>/Username $</h1>
+                <h1>/Username $ <span class="command"></span></h1>
                 <ul>
-                    <li>~/home</li>
-                    <li>~/write-ups</li>
-                    <li>~/whoami</li>
+                    <li data-command-text="cd home">~/home</li>
+                    <li data-command-text="cd write-ups">~/<span>write-ups</li>
+                    <li data-command-text="cd whoami">~/<span>whoami</span></li>
             </div>
         </nav>
+    </header>
 
-        <main>
-            <section class="nobackground" id="menu-profile">
-                <img
-                    src="https://avatars.githubusercontent.com/u/82236839?v=4"
-                    alt=""
-                />
-                <div class="socials">
-                    <i class="fab fa-discord"></i>
-                    <i class="fab fa-github"></i>
-                </div>
-            </section>
-            <section>
-                <h2>Latest news</h2>
-                <hr />
-                <article>
-                    <div class="content">
-                        <h3>Post title</h3>
-                        <small>26/10/2022</small>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Minus iste, quos nisi cumque iusto perferendis
-                            id qui dolore hic doloremque numquam!
-                        </p>
-                    </div>
-                    <div class="tags">
-                        <ul>
-                            <li><a href="#">Tag #1</a></li>
-                            <li><a href="#">Tag #2</a></li>
-                        </ul>
-                    </div>
-                </article>
-            </section>
-            <section class="nobackground wrapper">
-                <h2>Les coupains</h2>
-                <hr />
-                <div class="content">
-                    <img
-                        src="https://avatars.githubusercontent.com/u/90158435?v=4"
-                        alt=""
-                    />
-                    <img
-                        src="https://avatars.githubusercontent.com/u/82236839?v=4"
-                        alt=""
-                    />
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div id="footer-container">
-                <ul id="media">
-                    <li><a href="#">Root-me</a></li>
-                    <li><a href="#"></a></li>
-                </ul>
-                <p>@ Username 2022</p>
-                <ul id="sitemap">
-                    <h3>Site map</h3>
-                    <li>/home</li>
-                    <li>/write-ups</li>
-                    <li>/whoami</li>
-                </ul>
+    <main>
+        <section class="nobackground" id="menu-profile">
+            <img src="https://avatars.githubusercontent.com/u/82236839?v=4" alt="" />
+            <div class="socials">
+                <i data-command-text="ping discord" class="fab fa-discord"></i>
+                <i data-command-text="ping github" class="fab fa-github"></i>
             </div>
-        </footer>
-    </body>
+        </section>
+        <section>
+            <h2>Latest news</h2>
+            <hr />
+            <article>
+                <div class="content">
+                    <h3>Post title</h3>
+                    <small>26/10/2022</small>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Minus iste, quos nisi cumque iusto perferendis
+                        id qui dolore hic doloremque numquam!
+                    </p>
+                </div>
+                <div class="tags">
+                    <ul>
+                        <li><a href="#">Tag #1</a></li>
+                        <li><a href="#">Tag #2</a></li>
+                    </ul>
+                </div>
+            </article>
+            <article>
+                <div class="content">
+                    <h3>Post title</h3>
+                    <small>26/10/2022</small>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Minus iste, quos nisi cumque iusto perferendis
+                        id qui dolore hic doloremque numquam!
+                    </p>
+                </div>
+                <div class="tags">
+                    <ul>
+                        <li><a href="#">Tag #1</a></li>
+                        <li><a href="#">Tag #2</a></li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+        <section class="nobackground wrapper">
+            <h2>Les coupains</h2>
+            <hr />
+            <div class="content">
+                <img src="https://avatars.githubusercontent.com/u/90158435?v=4" alt="" />
+                <img src="https://avatars.githubusercontent.com/u/82236839?v=4" alt="" />
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer-container">
+            <ul id="media">
+                <li><a href="#">Root-me</a></li>
+                <li><a href="#"></a></li>
+            </ul>
+            <p>@ Username 2022</p>
+            <ul id="sitemap">
+                <h3>Site map</h3>
+                <li>/home</li>
+                <li>/write-ups</li>
+                <li>/whoami</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
 </html>

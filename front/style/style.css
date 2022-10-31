@@ -2,13 +2,15 @@
 
 :root {
     --background-color: rgb(40, 40, 45);
-    --primary-color: #3137fd;
-    --primary-color-active: #8c8fff;
+    --primary-color: #38e721;
+    --primary-color-active: #abffa0;
     --secondary-color: rgb(30, 30, 35);
     --text-color: white;
     --page-width: 1000px;
 
     --article-color: #bbbbbb;
+
+    --header-height: 4em;
 
     --ion-color-step-50: #1e1e1e;
     --ion-color-step-100: #2a2a2a;
@@ -62,9 +64,20 @@ a:hover {
 *   Navigation Styling
 */
 
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: transform 1s cubic-bezier(.12, .36, .35, 1);
+}
+
+header.hide {
+    transform: translateY(-100%);
+}
+
 nav {
     background-color: var(--secondary-color);
-    height: 4em;
+    height: var(--header-height);
 }
 
 #nav-container {
@@ -103,9 +116,11 @@ nav {
     0% {
         opacity: 0%;
     }
+
     50% {
         opacity: 100%;
     }
+
     100% {
         opacity: 0%;
     }
@@ -123,6 +138,7 @@ main {
     width: var(--page-width);
     max-width: 75%;
     height: 100%;
+    margin-top: calc(1em + var(--header-height));
 }
 
 main section {
@@ -130,7 +146,8 @@ main section {
     padding: 0.5em;
     background-color: var(--ion-color-step-50);
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: rgb(0 0 0 / 30%) -7px 13px 20px 4px;
+    margin-bottom: 1em;
 }
 
 main section.nobackground {
@@ -143,8 +160,9 @@ main section h2 {
 }
 
 main section hr {
-    width: 33%;
-    margin-bottom: 0.35em;
+    width: 200px;
+    margin-top: .35em;
+    margin-bottom: .75em;
 }
 
 main #menu-profile img {
@@ -181,6 +199,8 @@ main section.wrapper hr {
 }
 
 main section article {
+    margin-inline: 1em;
+    padding-block: 1em;
     display: flex;
     align-items: center;
 }
@@ -201,10 +221,15 @@ main section article .content {
 
 main section article .tags {
     padding-inline: 0.5em;
+    margin-bottom: auto;
 }
 
 main section article .tags ul {
     list-style: none;
+}
+
+main section article:not(:last-of-type) {
+    border-bottom: 1px rgba(204, 204, 204, .15) solid;
 }
 
 /*
