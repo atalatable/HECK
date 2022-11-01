@@ -12,25 +12,25 @@
 
     --header-height: 4em;
 
-    --ion-color-step-50: #1e1e1e;
-    --ion-color-step-100: #2a2a2a;
-    --ion-color-step-150: #363636;
-    --ion-color-step-200: #414141;
-    --ion-color-step-250: #4d4d4d;
-    --ion-color-step-300: #595959;
-    --ion-color-step-350: #656565;
-    --ion-color-step-400: #717171;
-    --ion-color-step-450: #7d7d7d;
-    --ion-color-step-500: #898989;
-    --ion-color-step-550: #949494;
-    --ion-color-step-600: #a0a0a0;
-    --ion-color-step-650: #acacac;
-    --ion-color-step-700: #b8b8b8;
-    --ion-color-step-750: #c4c4c4;
-    --ion-color-step-800: #d0d0d0;
-    --ion-color-step-850: #dbdbdb;
-    --ion-color-step-900: #e7e7e7;
-    --ion-color-step-950: #f3f3f3;
+    --color-step-50: #1e1e1e;
+    --color-step-100: #2a2a2a;
+    --color-step-150: #363636;
+    --color-step-200: #414141;
+    --color-step-250: #4d4d4d;
+    --color-step-300: #595959;
+    --color-step-350: #656565;
+    --color-step-400: #717171;
+    --color-step-450: #7d7d7d;
+    --color-step-500: #898989;
+    --color-step-550: #949494;
+    --color-step-600: #a0a0a0;
+    --color-step-650: #acacac;
+    --color-step-700: #b8b8b8;
+    --color-step-750: #c4c4c4;
+    --color-step-800: #d0d0d0;
+    --color-step-850: #dbdbdb;
+    --color-step-900: #e7e7e7;
+    --color-step-950: #f3f3f3;
 }
 
 * {
@@ -144,7 +144,7 @@ main {
 main section {
     height: 100%;
     padding: 0.5em;
-    background-color: var(--ion-color-step-50);
+    background-color: var(--color-step-50);
     border-radius: 5px;
     box-shadow: rgb(0 0 0 / 30%) -7px 13px 20px 4px;
     margin-bottom: 1em;
@@ -230,6 +230,55 @@ main section article .tags ul {
 
 main section article:not(:last-of-type) {
     border-bottom: 1px rgba(204, 204, 204, .15) solid;
+}
+
+/*
+*   Accordion
+*/
+.accordion .item {
+    background: var(--color-step-100);
+    padding: .75em;
+    cursor: pointer;
+}
+
+.accordion:not(.open):not(:last-of-type) .item {
+    border-bottom: 1px rgba(204, 204, 204, .5) solid;
+}
+
+.accordion .item i {
+    transition: transform .3s cubic-bezier(0, 0.65, 0.4, 1);
+}
+
+.accordion .item button {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: initial;
+    color: inherit;
+    font-family: initial;
+    font-size: initial;
+    text-align: initial;
+    cursor: pointer;
+}
+
+.accordion span {
+    flex: 1;
+}
+
+.accordion .content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .3s cubic-bezier(0.25, 0.8, 0.5, 1) 0s;
+}
+
+.accordion .content .inner {
+    padding: 1em;
+}
+
+.accordion.open .item i {
+    transform: rotate(-90deg);
 }
 
 /*

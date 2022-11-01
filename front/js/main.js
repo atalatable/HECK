@@ -28,7 +28,6 @@
     }
 
     var prevScroll = 0;
-
     window.addEventListener('scroll', (e) => {
         const deltaY = prevScroll - window.scrollY;
         if (window.scrollY > 64) { // size of header
@@ -36,5 +35,15 @@
             else document.querySelector('header').classList.add('hide');
         } else document.querySelector('header').classList.remove('hide');
         prevScroll = window.scrollY;
+    });
+
+    // Accordion trigger
+    [...document.querySelectorAll('.accordion')].forEach(el => {
+        el.querySelector('.item').addEventListener('click', _ => {
+            var content = el.querySelector('.content');
+            content.style.maxHeight = content.style.maxHeight == '' ? `${content.scrollHeight}px` : '';
+            el.classList.toggle('open');
+        })
     })
+
 })();

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script defer src="/js/main.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="nav-container">
+                <h1>/Username/write-ups $ <span class="command"></span></h1>
+                <ul>
+                    <li data-command-text="cd home">~/home</li>
+                    <li data-command-text="cd write-ups">~/<span>write-ups</li>
+                    <li data-command-text="cd whoami">~/<span>whoami</span></li>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Latest news</h2>
+            <hr />
+            <div class="accordion">
+                <div class="item">
+                    <button>
+                        <span>{WRITEUP CATEGORY}</span>
+                        <i class="fa-solid fa-caret-left"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="inner">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, reprehenderit
+                        dignissimos! Delectus pariatur fugiat, magnam nisi excepturi quod distinctio porro doloremque
+                        ratione. Rem officia neque voluptas mollitia, ex hic tempore?
+                    </div>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="item">
+                    <button>
+                        <span>{WRITEUP CATEGORY}</span>
+                        <i class="fa-solid fa-caret-left"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="inner">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, reprehenderit
+                        dignissimos! Delectus pariatur fugiat, magnam nisi excepturi quod distinctio porro doloremque
+                        ratione. Rem officia neque voluptas mollitia, ex hic tempore?
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer-container">
+            <ul id="media">
+                <li><a href="#">Root-me</a></li>
+                <li><a href="#"></a></li>
+            </ul>
+            <p>@ Username 2022</p>
+            <ul id="sitemap">
+                <h3>Site map</h3>
+                <li>/home</li>
+                <li>/write-ups</li>
+                <li>/whoami</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
