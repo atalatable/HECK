@@ -68,7 +68,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    transition: transform 1s cubic-bezier(.12, .36, .35, 1);
+    transition: transform 1s cubic-bezier(0.12, 0.36, 0.35, 1);
 }
 
 header.hide {
@@ -161,8 +161,8 @@ main section h2 {
 
 main section hr {
     width: 200px;
-    margin-top: .35em;
-    margin-bottom: .75em;
+    margin-top: 0.35em;
+    margin-bottom: 0.75em;
 }
 
 main #menu-profile img {
@@ -198,38 +198,38 @@ main section.wrapper hr {
     margin-inline: auto;
 }
 
-main section article {
+article {
     margin-inline: 1em;
     padding-block: 1em;
     display: flex;
     align-items: center;
 }
 
-main section article small {
+article small {
     color: #6a6a6a;
 }
 
-main section article h3 {
+article h3 {
     color: var(--text-color);
 }
 
-main section article .content {
+article .content {
     flex: 1;
     text-align: justify;
     color: var(--article-color);
 }
 
-main section article .tags {
+article .tags {
     padding-inline: 0.5em;
     margin-bottom: auto;
 }
 
-main section article .tags ul {
+article .tags ul {
     list-style: none;
 }
 
-main section article:not(:last-of-type) {
-    border-bottom: 1px rgba(204, 204, 204, .15) solid;
+article:not(:last-of-type) {
+    border-bottom: 1px rgba(204, 204, 204, 0.15) solid;
 }
 
 /*
@@ -237,16 +237,16 @@ main section article:not(:last-of-type) {
 */
 .accordion .item {
     background: var(--color-step-100);
-    padding: .75em;
+    padding: 0.75em;
     cursor: pointer;
 }
 
 .accordion:not(.open):not(:last-of-type) .item {
-    border-bottom: 1px rgba(204, 204, 204, .5) solid;
+    border-bottom: 1px rgba(204, 204, 204, 0.5) solid;
 }
 
 .accordion .item i {
-    transition: transform .3s cubic-bezier(0, 0.65, 0.4, 1);
+    transition: transform 0.3s cubic-bezier(0, 0.65, 0.4, 1);
 }
 
 .accordion .item button {
@@ -267,18 +267,23 @@ main section article:not(:last-of-type) {
     flex: 1;
 }
 
-.accordion .content {
+.accordion > .content {
     max-height: 0px;
     overflow: hidden;
-    transition: max-height .3s cubic-bezier(0.25, 0.8, 0.5, 1) 0s;
+    transition: max-height 0.3s cubic-bezier(0.25, 0.8, 0.5, 1) 0s;
 }
 
-.accordion .content .inner {
+.accordion > .content .inner {
     padding: 1em;
 }
 
 .accordion.open .item i {
     transform: rotate(-90deg);
+}
+
+.accordion article {
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 /*
