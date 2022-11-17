@@ -1,0 +1,14 @@
+{
+  "name": "heck",
+  "version": "1.0.0",
+  "description": "a webapp among other webapps",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js -e html,css,js,json,mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
