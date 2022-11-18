@@ -13,6 +13,14 @@ This is a bit more complicated
 3) To run a dev server just run `npm run dev` in the back folder (or `node index.js`)
 4) It should be up and running on port 3000
 
+> We are using ExpressJS for the back end
+> 
+> - index.js is the entry point [See ExpressJs quick Guide](https://expressjs.com/) to understand
+> 
+> - Under /views are ejs files (just like html but with logic things)
+> 
+> - Under /public are static files (images, css, client-side js, ...)
+
 ## Accessing via git
 [See this git cheatsheet](https://about.gitlab.com/images/press/git-cheat-sheet.pdf)
 
