@@ -16,4 +16,4 @@ This is a bit more complicated
 ## Accessing via git
 [See this git cheatsheet](https://about.gitlab.com/images/press/git-cheat-sheet.pdf)
 
-If any problem ask @atalatable or @krishenk
+If any problem ask @Atalata or @KrishenK
