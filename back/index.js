@@ -4,12 +4,22 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+app.set('view engine', 'ejs');
+
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.send("Hello world !");
-})
+    res.redirect('/home');
+});
+
+app.get('/home', (req, res) => {
+    res.render("index");
+});
+
+app.get('/write-ups', (req, res) => {
+    res.render('write-ups/index');
+});
 
 app.listen(port, () => {
     console.log("App running on http://localhost:" + port);
-})
+});
