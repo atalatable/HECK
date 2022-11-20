@@ -2,8 +2,8 @@
 
 :root {
     --background-color: rgb(40, 40, 45);
-    --primary-color: #38e721;
-    --primary-color-active: #abffa0;
+    --primary-color: #28e721;
+    --primary-color-active: #c8ffa0;
     --secondary-color: rgb(30, 30, 35);
     --text-color: white;
     --page-width: 1000px;
@@ -96,8 +96,15 @@ nav {
 
 #nav-container ul {
     display: flex;
-    gap: 20px;
     list-style: none;
+    height: 100%;
+    gap: 20px;
+}
+
+#nav-container ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 #nav-container h1 {
@@ -116,18 +123,14 @@ nav {
     animation: flashy_animation infinite 1s;
 }
 
+#nav-container #burger-menu {
+    display: none;
+}
+
 @keyframes flashy_animation {
-    0% {
-        opacity: 0%;
-    }
-
-    50% {
-        opacity: 100%;
-    }
-
-    100% {
-        opacity: 0%;
-    }
+    0% { opacity: 0%; }
+    50% { opacity: 100%; }
+    100% { opacity: 0%; }
 }
 
 /*
@@ -323,4 +326,11 @@ footer {
 #footer-container #sitemap li {
     margin-left: 10px;
     margin-bottom: 3px;
+}
+
+/* Responsive */
+
+/* Navigation menu */
+@media only screen and (max-width: 600px) {
+  /* Styles */
 }

@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,10 @@ app.get('/home', (req, res) => {
 
 app.get('/write-ups', (req, res) => {
     res.render('write-ups/index');
+});
+
+app.use((req, res) => {
+    res.status(404).render('404');
 });
 
 app.listen(port, () => {
