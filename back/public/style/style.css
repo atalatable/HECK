@@ -288,11 +288,6 @@ article:not(:last-of-type) {
     transform: rotate(90deg);
 }
 
-.accordion article {
-    align-items: flex-start;
-    flex-direction: column;
-}
-
 /*
 *   Footer styling
 */

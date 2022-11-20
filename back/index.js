@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const { allowedNodeEnvironmentFlags } = require('process');
 
 const app = express();
 const port = 3000;
@@ -14,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.render("index");
+    res.render('home');
 });
 
 app.get('/write-ups', (req, res) => {
@@ -22,7 +21,7 @@ app.get('/write-ups', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.status(404).render('404');
+    res.status(404).render('404', {page: req.url.length > 15 ? req.url.substring(0, 10)+"[...]"+req.url.substring(req.url.length -3) : req.url});
 });
 
 app.listen(port, () => {
