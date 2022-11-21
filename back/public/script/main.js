@@ -1,4 +1,6 @@
 (function () {
+
+    // Command writer
     var command = document.querySelector(".command");
     [...document.querySelectorAll("* [data-command-text]")].forEach((el) => {
         var i = 0;
@@ -27,6 +29,7 @@
         }
     }
 
+    // Navbar fading
     var prevScroll = 0;
     window.addEventListener('scroll', (e) => {
         const deltaY = prevScroll - window.scrollY;
@@ -46,4 +49,28 @@
         })
     })
 
+    // Theme toggler
+    document.querySelector("#theme-toggler").addEventListener('click', (e) => {
+        const button = document.querySelector("#theme-toggler");
+
+        button.children[0].classList.toggle('fa-sun');
+        button.children[0].classList.toggle('fa-moon');
+
+        if(window.localStorage.getItem("theme") === "dark") {
+            document.querySelector("body").classList.add("light");
+
+            window.localStorage.setItem("theme", "light");
+        } else {
+            document.querySelector("body").classList.remove("light");
+
+            window.localStorage.setItem("theme", "dark");
+        }
+    })
+
+    if(!window.localStorage.getItem('theme')) { window.localStorage.setItem('theme', 'dark') }
+    if(window.localStorage.getItem("theme") == "light") {
+        document.querySelector("body").classList.add("light");
+        document.querySelector("#theme-toggler").children[0].classList.remove("fa-sun");
+        document.querySelector("#theme-toggler").children[0].classList.add("fa-moon");
+    }
 })();

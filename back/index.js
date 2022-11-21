@@ -21,7 +21,7 @@ app.get('/write-ups', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.status(404).render('404', {page: req.url.length > 15 ? req.url.substring(0, 10)+"[...]"+req.url.substring(req.url.length -3) : req.url});
+    res.status(404).render('404', {page: req.url.length > 18 ? req.url.substring(0, 10)+"[...]"+req.url.substring(req.url.length -3) : req.url});
 });
 
 app.listen(port, () => {

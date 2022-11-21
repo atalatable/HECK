@@ -33,6 +33,34 @@
     --color-step-950: #f3f3f3;
 }
 
+body.light {
+    --background-color: #ffffff;
+    --secondary-color: #bfbfbf;
+    --text-color: black;
+    --primary-color: #07c400;
+    --primary-color-active: #4bb400;
+
+    --color-step-50: #f3f3f3;
+    --color-step-100: #e7e7e7;
+    --color-step-150: #dbdbdb;
+    --color-step-200: #d0d0d0;
+    --color-step-250: #c4c4c4;
+    --color-step-300: #b8b8b8;
+    --color-step-350: #acacac;
+    --color-step-400: #a0a0a0;
+    --color-step-450: #949494;
+    --color-step-500: #898989;
+    --color-step-550: #7d7d7d;
+    --color-step-600: #717171;
+    --color-step-650: #656565;
+    --color-step-700: #595959;
+    --color-step-750: #4d4d4d;
+    --color-step-800: #414141;
+    --color-step-850: #363636;
+    --color-step-900: #2a2a2a;
+    --color-step-950: #1e1e1e;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -237,6 +265,39 @@ article .tags ul {
 
 article:not(:last-of-type) {
     border-bottom: 1px rgba(204, 204, 204, 0.15) solid;
+}
+
+/*
+*   Mode toogler
+*/
+#theme-toggler {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20%;
+    border: 1px solid var(--color-step-350);
+    background-color: var(--secondary-color);
+
+    cursor: pointer;
+
+    transition: all 1s;
+}
+
+#theme-toggler:hover {
+    background-color: var(--color-step-350);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+#theme-toggler i {
+    font-size: 30px;
 }
 
 /*
