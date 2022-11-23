@@ -1,8 +1,17 @@
 const express = require('express');
 const path = require('path');
+const { sendMail } = require('./mail.js');
+let cron = require('node-cron');
+require('dotenv').config();
+
+let canSendAMail = true;
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
+
+cron.schedule('* */1 * * *', () => {
+    canSendAMail = true;
+});
 
 app.set('view engine', 'ejs');
 
@@ -18,6 +27,15 @@ app.get('/home', (req, res) => {
 
 app.get('/write-ups', (req, res) => {
     res.render('write-ups/index');
+});
+
+app.get('/send-mail', (req, res) => {
+    if(canSendAMail) { 
+        sendMail(process.env.mail, "Clé de connexion oubliée", "Tiens, la prochaine fois mémorise la par contre : "+process.env.login_key);
+        res.send("Succefully sent mail !");
+    } else {
+        res.send("You already requested a mail, wait before trying again !")
+    }
 });
 
 app.use((req, res) => {
