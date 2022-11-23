@@ -9,7 +9,8 @@ let canSendAMail = true;
 const app = express();
 const port = process.env.port || 3000;
 
-cron.schedule('* */1 * * *', () => {
+cron.schedule('0 */1 * * *', () => {
+    console.log("CRONTAB - Reinitalizate canSendMail variable")
     canSendAMail = true;
 });
 
@@ -32,6 +33,7 @@ app.get('/write-ups', (req, res) => {
 app.get('/send-mail', (req, res) => {
     if(canSendAMail) { 
         sendMail(process.env.mail, "Clé de connexion oubliée", "Tiens, la prochaine fois mémorise la par contre : "+process.env.login_key);
+        canSendAMail = false;
         res.send("Succefully sent mail !");
     } else {
         res.send("You already requested a mail, wait before trying again !")
