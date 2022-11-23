@@ -26,6 +26,7 @@ mail_password = y0urM4ilp4ssw0rd666
 mail_smtp = smtp.server.com # (see your mail settings to view smtp server and port)
 mail_port = 587
 ```
+It is used with `require('dotenv')` and then `process.env.constName` inside js files
 
 > We are using ExpressJS for the back end
 > 
