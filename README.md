@@ -13,6 +13,20 @@ This is a bit more complicated
 3) To run a dev server just run `npm run dev` in the back folder (or `node index.js`)
 4) It should be up and running on port 3000
 
+### TODO
+You must add a file named `.env` at the root of back
+inside of it you have to write 
+```dotenv
+port = 3000
+login_key = prout # (the key that will be used to login and update w-u)
+
+# Mail informations
+mail = yourmail@mail.com
+mail_password = y0urM4ilp4ssw0rd666
+mail_smtp = smtp.server.com # (see your mail settings to view smtp server and port)
+mail_port = 587
+```
+
 > We are using ExpressJS for the back end
 > 
 > - index.js is the entry point [See ExpressJs quick Guide](https://expressjs.com/) to understand
