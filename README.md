@@ -14,7 +14,8 @@ This is a bit more complicated
 4) It should be up and running on port 3000
 
 ### TODO
-You must add a file named `.env` at the root of back
+You must add a file named `.env` at the root of the `back` folder
+
 inside of it you have to write 
 ```dotenv
 port = 3000
