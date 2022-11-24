@@ -1,11 +1,4 @@
 # Heck
-
-project is divided in two parts : front and back
-
-## Front
-Just for a better frontend dev experience (dev it like a clement di grand thouars site)
-
-## Back
 This is a bit more complicated
 
 1) You need to have nodejs installed and setup
@@ -14,7 +7,7 @@ This is a bit more complicated
 4) It should be up and running on port 3000
 
 ### TODO
-You must add a file named `.env` at the root of the `back` folder
+You must add a file named `.env` at the root
 
 inside of it you have to write 
 ```dotenv
