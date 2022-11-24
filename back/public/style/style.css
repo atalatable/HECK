@@ -156,9 +156,28 @@ nav {
 }
 
 @keyframes flashy_animation {
-    0% { opacity: 0%; }
-    50% { opacity: 100%; }
-    100% { opacity: 0%; }
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
+
+#mobile-nav {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+}
+
+#mobile-nav ul li {
+    background: var(--secondary-color);
 }
 
 /*
@@ -388,7 +407,7 @@ footer {
 
 /* Navigation menu */
 @media only screen and (max-width: 600px) {
-  /* Styles */
+    /* Styles */
     #nav-container ul {
         display: none;
     }
