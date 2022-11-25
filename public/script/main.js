@@ -56,7 +56,7 @@
         button.children[0].classList.toggle('fa-sun');
         button.children[0].classList.toggle('fa-moon');
 
-        if(window.localStorage.getItem("theme") === "dark") {
+        if (window.localStorage.getItem("theme") === "dark") {
             document.querySelector("body").classList.add("light");
 
             window.localStorage.setItem("theme", "light");
@@ -67,10 +67,30 @@
         }
     })
 
-    if(!window.localStorage.getItem('theme')) { window.localStorage.setItem('theme', 'dark') }
-    if(window.localStorage.getItem("theme") == "light") {
+    if (!window.localStorage.getItem('theme')) { window.localStorage.setItem('theme', 'dark') }
+    if (window.localStorage.getItem("theme") == "light") {
         document.querySelector("body").classList.add("light");
         document.querySelector("#theme-toggler").children[0].classList.remove("fa-sun");
         document.querySelector("#theme-toggler").children[0].classList.add("fa-moon");
     }
+
+    let mobileNav = document.getElementById('mobile-nav');
+    document.getElementById('burger-menu').addEventListener('click', () => {
+        mobileNav.classList.add('show');
+        const newspaperSpinning = [
+            { transform: 'translateX(-100%)' },
+            { transform: 'translateX(0)' }
+        ];
+
+        [...document.querySelectorAll("#mobile-nav ul li")].forEach((el, i) => el.animate(newspaperSpinning, {
+            duration: 1550+i*550,
+            easing: 'cubic-bezier(.59,0,.37,.99)',
+            fill: 'forwards'
+        }))
+    })
+    document.getElementById('close-mobile-menu').addEventListener('click', () => {
+        mobileNav.classList.remove('show');
+    })
+
+
 })();
