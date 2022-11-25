@@ -1,0 +1,28 @@
+
+<%- include('../partials/header.ejs', {title: "Write-ups"}); %> 
+
+<main>
+    <section>
+        <h2>Login</h2>
+        <hr/>
+        <form method="post" id="login-form" action="/upload/login/requested-key">
+            <div id="input-div">
+                <input type="password" name="key" id="key" placeholder="Enter login key" autocomplete="off">
+                <i id="eye" class="fa-regular fa-eye"></i>
+            </div>
+            <input type="submit">
+        </form>
+    </section>
+
+    <script>
+        document.querySelector("#eye").addEventListener('click', (e) => {
+            const eye = e.target
+            eye.classList.toggle("fa-eye");
+            eye.classList.toggle("fa-eye-slash");
+
+            eye.parentNode.children[0].type == "password" ? eye.parentNode.children[0].type = "text" : eye.parentNode.children[0].type = "password";
+        });
+    </script>
+</main>
+
+<%- include('../partials/footer.ejs'); %>

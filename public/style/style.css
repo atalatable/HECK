@@ -68,6 +68,10 @@ body.light {
     box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -366,6 +370,56 @@ article:not(:last-of-type) {
 
 .accordion.open .item i {
     transform: rotate(90deg);
+}
+
+#login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+#input-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 1em;
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+}
+
+#input-div:has(> #key:focus) {
+    border: 1px solid var(--primary-color-active);
+}
+
+#input-div #key {
+    flex-grow: 5;
+    height: 2em;
+    border: none;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#input-div i {
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+#login-form > input[type=submit] {
+    height: 2em;
+    cursor: pointer;
+    padding: 0 1em;
+    border-radius: 1em;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#login-form > input[type=submit]:hover {
+    background-color: var(--color-step-300);
 }
 
 /*

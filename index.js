@@ -16,6 +16,7 @@ cron.schedule('0 */1 * * *', () => {
 app.set('view engine', 'ejs');
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded())
 
 app.get('/', (req, res) => {
     res.redirect('/home');
@@ -27,6 +28,24 @@ app.get('/home', (req, res) => {
 
 app.get('/write-ups', (req, res) => {
     res.render('write-ups/index');
+});
+
+app.get('/upload', (req, res) => {
+    // res.render('upload/index')
+    res.redirect('/upload/login');
+});
+
+app.post('/upload/login/requested-key', (req, res) => {
+    if(req.body.key == process.env.login_key) {
+        res.send('Good Key')
+    } else {
+        res.send('Wrong Key')
+    }
+    // res.redirect('/upload/login')
+});
+
+app.get('/upload/login', (req, res) => {
+    res.render('upload/login');
 });
 
 app.get('/send-mail', (req, res) => {
