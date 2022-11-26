@@ -193,6 +193,10 @@ header nav #burger-menu {
     width: 100%;
 }
 
+html:has(#mobile-nav.show), body:has(#mobile-nav.show) {
+    overflow: hidden;
+}
+
 #mobile-nav ul li {
     font-size: 25pt;
     padding: 1em .5em;
