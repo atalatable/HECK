@@ -156,6 +156,10 @@ header nav h1::after {
     animation: flashy_animation infinite 1s;
 }
 
+#burger-menu {
+    cursor: pointer;
+}
+
 header nav #burger-menu {
     display: none;
 }
@@ -204,6 +208,7 @@ html:has(#mobile-nav.show), body:has(#mobile-nav.show) {
 }
 
 #close-mobile-menu {
+    cursor: pointer;
     font-size: 1.5em;
     position: absolute;
     right: 1em;
@@ -486,7 +491,7 @@ footer {
 /* Responsive */
 
 /* Navigation menu */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     /* Styles */
     nav:not([id="mobile-nav"]) ul {
         display: none;

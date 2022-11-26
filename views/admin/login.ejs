@@ -5,11 +5,22 @@
     <section>
         <h2>Login</h2>
         <hr/>
-        <form method="post" id="login-form" action="/upload/login/requested-key">
+        <form method="post" id="login-form" action="/admin/login">
             <div id="input-div">
                 <input type="password" name="key" id="key" placeholder="Enter login key" autocomplete="off">
                 <i id="eye" class="fa-regular fa-eye"></i>
             </div>
+            <% if (locals.error) { %>
+                <% if (locals.error == "key") { %>
+                    <p style="color:red">Bad connexion Key, <a style="text-decoration: underline;color:red;" href="/send-mail">forgot key ?</a></p>
+                <% } %>
+                <% if (locals.error == "mail") { %>
+                    <p>Mail Sent !</p>
+                <% } %>
+                <% if (locals.error == "nomail") { %>
+                    <p style="color: red;">Already sent a mail !</p>
+                <% } %>
+            <% } %>
             <input type="submit">
         </form>
     </section>

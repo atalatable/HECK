@@ -74,6 +74,7 @@
         document.querySelector("#theme-toggler").children[0].classList.add("fa-moon");
     }
 
+    // Mobile Menu
     let mobileNav = document.getElementById('mobile-nav');
     document.getElementById('burger-menu').addEventListener('click', () => {
         mobileNav.classList.add('show');

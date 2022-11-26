@@ -1,16 +1,19 @@
 const express = require('express');
 const path = require('path');
-const { sendMail } = require('./mail.js');
+const cookiParser = require('cookie-parser');
+
 let cron = require('node-cron');
+const { sendMail } = require('./mail.js');
 require('dotenv').config();
 
-let canSendAMail = true;
+let canSendAMail = false;
 
 if (!process.env.login_key) throw new Error('No *login_key*, may be .env is missing ?')
 
 const app = express();
 const port = process.env.port || 3000;
 
+// Can send a mail every hour
 cron.schedule('0 */1 * * *', () => {
     canSendAMail = true;
 });
@@ -18,8 +21,8 @@ cron.schedule('0 */1 * * *', () => {
 app.set('view engine', 'ejs');
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}))
-
+app.use(express.urlencoded({extended: true}));
+app.use(cookiParser());
 
 app.get('/', (req, res) => {
     res.redirect('/home');
@@ -33,32 +36,45 @@ app.get('/write-ups', (req, res) => {
     res.render('write-ups/index');
 });
 
-app.get('/upload', (req, res) => {
-    // res.render('upload/index')
-    res.redirect('/upload/login');
-});
-
-app.post('/upload/login/requested-key', (req, res) => {
-    if(req.body.key == process.env.login_key) {
-        res.send('Good Key');
+app.get('/admin', (req, res) => {
+    if(req.cookies.connected == "true") {
+        res.render('admin/index');
     } else {
-        res.send('Wrong Key');
+        res.redirect('/admin/login');
     }
-    res.redirect('/upload/login');
 });
 
-app.get('/upload/login', (req, res) => {
-    res.render('upload/login');
+app.post('/admin/login', (req, res) => {
+    if(req.body.key == process.env.login_key) {
+        res.cookie('connected', 'true', {maxAge: 1000*60*60*24}).redirect('/admin');
+    } else {
+        res.render('admin/login', {error: "key"});
+    }
+});
+
+app.get('/admin/login', (req, res) => {
+    if(req.cookies.connected == "true") {
+        res.redirect('/admin');
+    } else if(req.query.origin) {
+        res.render('admin/login', {error: req.query.origin})
+    } else {
+        res.render('admin/login');
+    }
+});
+
+app.get('/logout', (req, res) => {
+    res.clearCookie("connected");
+    res.redirect('/home');
 });
 
 app.get('/send-mail', (req, res) => {
     if(canSendAMail) { 
         sendMail(process.env.mail, "Clé de connexion oubliée", "Tiens, la prochaine fois mémorise la par contre : " + process.env.login_key).then((e) => {
-            res.send("Succefully sent mail !");
+            res.redirect("/admin/login?origin=mail");
         });
         canSendAMail = false;
     } else {
-        res.send("You already requested a mail, wait before trying again !")
+        res.redirect("admin/login?origin=nomail")
     }
 });
 
