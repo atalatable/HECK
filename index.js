@@ -3,8 +3,9 @@ const path = require('path');
 const cookiParser = require('cookie-parser');
 
 let cron = require('node-cron');
-const { sendMail } = require('./mail.js');
 require('dotenv').config();
+const { sendMail } = require('./mail.js');
+const { db } = require('./database.js');
 
 let canSendAMail = false;
 
@@ -23,6 +24,20 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(cookiParser());
+
+app.get('/api/users', (req, res) => {
+    const sqlquery = "SELECT * FROM user"
+    db.all(sqlquery, (err, rows) => {
+        if(err) {
+            res.status(400).json({"error":err.message});
+            return
+        } else {
+            res.json({
+                "data": rows
+            })
+        }
+    });
+});
 
 app.get('/', (req, res) => {
     res.redirect('/home');

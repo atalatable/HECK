@@ -4,7 +4,8 @@
   "description": "a webapp among other webapps",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js -e html,css,js,json,mjs,ejs"
+    "start": "node index.js",
+    "dev": "nodemon index.js -e html,css,js,json,mjs,ejs,sql"
   },
   "author": "",
   "license": "ISC",
@@ -13,8 +14,10 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
     "node-cron": "^3.0.2",
-    "nodemailer": "^6.8.0"
+    "nodemailer": "^6.8.0",
+    "sqlite3": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
