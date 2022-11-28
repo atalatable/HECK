@@ -1,7 +1,29 @@
 <%- include('../partials/header.ejs', {title: "Write-ups"}); %> 
 
 <main>
-    <a href="/admin/login">Go to login page</a>
+    <form action="/api/post/tags" method="POST">
+        <input type="text" name="tag" id="tag">
+        <input type="submit" value="Envoyer">
+    </form>
+<% /* %>
+    <h1>Categories</h1>
+    <ul>
+    <% if (locals.categories) { %>
+        <% categories.forEach(element => { %>
+           <li><%= element.name %></li>
+        <% }) %>
+    <% } %>
+    </ul>
+    
+    <h1>Tags</h1>
+    <ul>
+    <% if (locals.tags) { %>
+        <% tags.forEach(element => { %>
+           <li><%= element.name %></li>
+        <% }) %>
+    <% } %>
+    </ul>
+    <% */ %>
 </main>
 
 <%- include('../partials/footer.ejs'); %>

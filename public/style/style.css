@@ -72,6 +72,27 @@ body.light {
   outline: none;
 }
 
+/* width */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  background: var(--secondary-color); 
+}
+ 
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  background: var(--color-step-550);
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-step-400); 
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);

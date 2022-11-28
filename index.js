@@ -6,6 +6,9 @@ let cron = require('node-cron');
 require('dotenv').config();
 const { sendMail } = require('./mail.js');
 const { db } = require('./database.js');
+const { runInNewContext } = require('vm');
+const { rejects } = require('assert');
+const { resolve } = require('path');
 
 let canSendAMail = false;
 
@@ -19,14 +22,18 @@ cron.schedule('0 */1 * * *', () => {
     canSendAMail = true;
 });
 
+function isConnected(req) {
+    return req.cookies.connected == "true";
+}
+
 app.set('view engine', 'ejs');
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(cookiParser());
 
-app.get('/api/users', (req, res) => {
-    const sqlquery = "SELECT * FROM user"
+app.get('/api/get/tags', (req, res) => {
+    const sqlquery = "SELECT * FROM tags;"
     db.all(sqlquery, (err, rows) => {
         if(err) {
             res.status(400).json({"error":err.message});
@@ -38,6 +45,52 @@ app.get('/api/users', (req, res) => {
         }
     });
 });
+
+app.get('/api/get/categories', (req, res) => {
+    const sqlquery = "SELECT * FROM categories;"
+    db.all(sqlquery, (err, rows) => {
+        if(err) {
+            res.status(400).json({"error":err.message});
+            return
+        } else {
+            res.json({
+                "data": rows
+            })
+        }
+    });
+});
+
+app.post('/api/post/tags', (req, res) => {
+    const sqlquery = "INSERT INTO tags(name) VALUES(?);";
+    if(req.body.tag) {
+        db.run(sqlquery, req.body.tag, (err) => {
+            if(err) {
+                res.status(400).json({"error":err.message});
+                return
+            } else {
+                res.redirect('/admin/');
+            }
+        });
+    } else {
+        res.send("A problem occured, req.body was empty");
+    }
+});
+
+app.post('/api/post/category', (req, res) => {
+    const sqlquery = "INSERT INTO categories(name) VALUES(?);";
+    if(req.body.name) {
+        db.run(sqlquery, req.body.name, (err) => {
+            if(err) {
+                res.status(400).json({"error": err.message});
+                return;
+            } else {
+                res.redirect('/api/get/categories')
+            }
+        });
+    } else {
+        res.send('A problem occured, req.body was empty');
+    }
+})
 
 app.get('/', (req, res) => {
     res.redirect('/home');
@@ -52,8 +105,12 @@ app.get('/write-ups', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    if(req.cookies.connected == "true") {
-        res.render('admin/index');
+    if(isConnected(req)) {
+        let tags = [];
+        let categories = [];
+        // TODO : query database and store rows in tags and categories
+        console.log("tags : ", tags)
+        res.render('admin/index', {tags: tags, categories: categories});
     } else {
         res.redirect('/admin/login');
     }
@@ -68,7 +125,7 @@ app.post('/admin/login', (req, res) => {
 });
 
 app.get('/admin/login', (req, res) => {
-    if(req.cookies.connected == "true") {
+    if(isConnected(req)) {
         res.redirect('/admin');
     } else if(req.query.origin) {
         res.render('admin/login', {error: req.query.origin})
