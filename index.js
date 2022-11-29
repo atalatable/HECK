@@ -104,17 +104,26 @@ app.get('/write-ups', (req, res) => {
     res.render('write-ups/index');
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', async (req, res) => {
     if(isConnected(req)) {
-        let tags = [];
+        let tags = await getAllTags(db);
         let categories = [];
-        // TODO : query database and store rows in tags and categories
         console.log("tags : ", tags)
         res.render('admin/index', {tags: tags, categories: categories});
     } else {
         res.redirect('/admin/login');
     }
 });
+
+async function getAllTags(db) {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM tags',(err, row) => {
+            if (err) reject(err); // I assume this is how an error is thrown with your db callback
+            resolve(row);
+        });
+    });
+}
+
 
 app.post('/admin/login', (req, res) => {
     if(req.body.key == process.env.login_key) {
