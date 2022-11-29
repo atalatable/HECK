@@ -6,9 +6,6 @@ let cron = require('node-cron');
 require('dotenv').config();
 const { sendMail } = require('./mail.js');
 const { db } = require('./database.js');
-const { runInNewContext } = require('vm');
-const { rejects } = require('assert');
-const { resolve } = require('path');
 
 let canSendAMail = false;
 
@@ -16,21 +13,6 @@ if (!process.env.login_key) throw new Error('No *login_key*, may be .env is miss
 
 const app = express();
 const port = process.env.port || 3000;
-
-// Can send a mail every hour
-cron.schedule('0 */1 * * *', () => {
-    canSendAMail = true;
-});
-
-function isConnected(req) {
-    return req.cookies.connected == "true";
-}
-
-app.set('view engine', 'ejs');
-
-app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}));
-app.use(cookiParser());
 
 app.get('/api/get/tags', (req, res) => {
     const sqlquery = "SELECT * FROM tags;"
@@ -92,6 +74,23 @@ app.post('/api/post/category', (req, res) => {
     }
 })
 
+// Can send a mail every hour
+cron.schedule('0 */1 * * *', () => {
+    canSendAMail = true;
+});
+
+function isConnected(req) {
+    return req.cookies.connected == "true";
+}
+
+app.set('view engine', 'ejs');
+
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({extended: true}));
+app.use(cookiParser());
+
+// app.use('/api', apiRoutes);
+
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
@@ -106,18 +105,17 @@ app.get('/write-ups', (req, res) => {
 
 app.get('/admin', async (req, res) => {
     if(isConnected(req)) {
-        let tags = await getAllTags(db);
-        let categories = [];
-        console.log("tags : ", tags)
+        let tags = await queryAll(db, 'SELECT * FROM tags');
+        let categories = await queryAll(db, 'SELECT * FROM categories;');
         res.render('admin/index', {tags: tags, categories: categories});
     } else {
         res.redirect('/admin/login');
     }
 });
 
-async function getAllTags(db) {
+async function queryAll(db, query) {
     return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM tags',(err, row) => {
+        db.all(query,(err, row) => {
             if (err) reject(err); // I assume this is how an error is thrown with your db callback
             resolve(row);
         });

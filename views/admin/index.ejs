@@ -2,10 +2,15 @@
 
 <main>
     <form action="/api/post/tags" method="POST">
-        <input type="text" name="tag" id="tag">
+        <label for="tag">Add a tag : </label>
+        <input type="text" name="tag" id="tag" autocomplete="off">
         <input type="submit" value="Envoyer">
     </form>
-<% /* %>
+    <form action="/api/post/categories" method="POST">
+        <label for="tag">Add a category : </label>
+        <input type="text" name="category" id="category" autocomplete="off">
+        <input type="submit" value="Envoyer">
+    </form>
     <h1>Categories</h1>
     <ul>
     <% if (locals.categories) { %>
@@ -23,7 +28,6 @@
         <% }) %>
     <% } %>
     </ul>
-    <% */ %>
 </main>
 
 <%- include('../partials/footer.ejs'); %>
