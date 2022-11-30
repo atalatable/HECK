@@ -7,18 +7,24 @@
         <input type="submit" value="Envoyer">
     </form>
     <form action="/api/post/categories" method="POST">
-        <label for="tag">Add a category : </label>
+        <label for="category">Add a category : </label>
         <input type="text" name="category" id="category" autocomplete="off">
         <input type="submit" value="Envoyer">
     </form>
-    <h1>Categories</h1>
-    <ul>
-    <% if (locals.categories) { %>
-        <% categories.forEach(element => { %>
-           <li><%= element.name %></li>
-        <% }) %>
-    <% } %>
-    </ul>
+    <form action="/api/post/wus" method="POST">
+        <label for="name">Add a write-up : </label>
+        <input type="text" name="name" id="name" autocomplete="off">
+        <select name="cat" id="cat">
+            <% if (locals.categories) { %>
+                <% categories.forEach(element => { %>
+                    <option value=<%= element.name %>><%= element.name %></option>
+                <% }) %>
+            <% } %>
+        </select>
+        <input type="date" name="date" id="date">
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Envoyer">
+    </form>
     
     <h1>Tags</h1>
     <ul>
