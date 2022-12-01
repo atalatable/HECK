@@ -1,16 +1,16 @@
 const express = require('express');
 const path = require('path');
 const cookiParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 let cron = require('node-cron');
 require('dotenv').config();
 const { sendMail } = require('./mail.js');
 const { db } = require('./database.js');
-const { query } = require('express');
 
 let canSendAMail = false;
 
-if (!process.env.login_key) throw new Error('No *login_key*, may be .env is missing ?')
+if (!process.env.login_key) throw new Error('No *login_key*, may be .env is missing ?');
 
 const app = express();
 const port = process.env.port || 3000;
@@ -20,10 +20,11 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(cookiParser());
+app.use(fileUpload());
 
 // Can send a mail every hour
 cron.schedule('0 */1 * * *', () => {
-    canSendAMail = true;
+    canSendAMail = false;
 });
 
 function isConnected(req) {
@@ -77,14 +78,19 @@ app.get('/api/get/categories', (req, res) => {
 // saves .md in a separate root directory
 // saves images under public/images/wuName/
 function saveFile(file, name) {
-    return
+    console.log(file)
 }
 
 app.post('/api/post/wus', async (req, res) => {
     if(isConnected(req)) {
         const sqlquery = "INSERT INTO write_ups(name,date,catid) VALUES(?,?,?);";
-        saveFile(req.body.file, req.body.name);
+        if(req.files) {
+            saveFile(req.files.wucontent, req.body.name);
+        } else {
+            console.log("No files provided");
+        }
         if(req.body.name && req.body.date && req.body.cat) {
+            console.log(req.body)
             let catid = await queryAll(db, `SELECT id FROM categories WHERE name = "${req.body.cat}";`);
             db.run(sqlquery, [req.body.name, req.body.date, catid[0].id], (err) => {
                 if(err) {
