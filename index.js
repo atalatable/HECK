@@ -7,6 +7,7 @@ let cron = require('node-cron');
 require('dotenv').config();
 const { sendMail } = require('./mail.js');
 const { db } = require('./database.js');
+const { query } = require('express');
 
 let canSendAMail = false;
 
@@ -30,6 +31,25 @@ cron.schedule('0 */1 * * *', () => {
 function isConnected(req) {
     return req.cookies.connected == "true";
 }
+
+// NOT WORKING
+app.get('/api/get/tagsfromwu', async (req,res) => {
+    console.log(req.query.wu)
+    const wuID = await queryAll(db, `SELECT id FROM write_ups WHERE name = "${req.query.wu}";`);
+    console.log(wuID)
+    const sqlquery = "SELECT "
+
+    db.all(sqlquery, (err, rows) => {
+        if(err) {
+            res.status(400).json({"error":err.message});
+            return
+        } else {
+            res.json({
+                "data": rows
+            });
+        }
+    });
+});
 
 app.get('/api/get/tags', (req, res) => {
     const sqlquery = "SELECT * FROM tags;"
@@ -81,6 +101,28 @@ function saveFile(file, name) {
     console.log(file)
 }
 
+app.post('/api/post/addtag', async (req, res) => {
+    if(isConnected(req)) {
+        if(req.body.tag && req.body.wu) {
+            const tagid = await queryAll(db, `SELECT id FROM tags WHERE name = "${req.body.tag}";`);
+            const wuID = await queryAll(db, `SELECT id FROM write_ups WHERE name = "${req.body.wu}";`);
+            const sqlquery = "INSERT INTO tags_wu(tagid,wuid) VALUES(?,?);";
+
+            db.run(sqlquery, [tagid[0].id, wuID[0].id], (err) => {
+                if(err) {
+                    res.status(400).json({"error": err.message});
+                } else {
+                    res.redirect('/admin/')
+                }
+            })
+        } else {
+            res.send('req.body not complete');
+        }
+    } else {
+        res.redirect('/home');
+    }
+});
+
 app.post('/api/post/wus', async (req, res) => {
     if(isConnected(req)) {
         const sqlquery = "INSERT INTO write_ups(name,date,catid) VALUES(?,?,?);";
@@ -90,7 +132,6 @@ app.post('/api/post/wus', async (req, res) => {
             console.log("No files provided");
         }
         if(req.body.name && req.body.date && req.body.cat) {
-            console.log(req.body)
             let catid = await queryAll(db, `SELECT id FROM categories WHERE name = "${req.body.cat}";`);
             db.run(sqlquery, [req.body.name, req.body.date, catid[0].id], (err) => {
                 if(err) {
@@ -165,9 +206,10 @@ app.get('/write-ups', (req, res) => {
 
 app.get('/admin', async (req, res) => {
     if(isConnected(req)) {
-        let tags = await queryAll(db, 'SELECT * FROM tags');
-        let categories = await queryAll(db, 'SELECT * FROM categories;');
-        res.render('admin/index', {tags: tags, categories: categories});
+        let tags = await queryAll(db, 'SELECT name FROM tags');
+        let categories = await queryAll(db, 'SELECT name FROM categories;');
+        let wu = await queryAll(db, 'SELECT name FROM write_ups;');
+        res.render('admin/index', {tags: tags, categories: categories, wu: wu});
     } else {
         res.redirect('/admin/login');
     }

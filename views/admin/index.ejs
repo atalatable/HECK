@@ -25,12 +25,34 @@
         <input type="file" name="foo" id="foo">
         <input type="submit" value="Envoyer" />
     </form>
-    
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="foo" id="foo">
-        <input type="submit" value="Envover">
+
+    <form action="/api/post/addtag" method="post">
+        <label for="wu">Select a tag for :</label>
+        <select name="wu" id="wu">
+            <% if (locals.wu) { %>
+                <% wu.forEach(element => { %>
+                    <option value="<%= element.name %>"><%= element.name %></option>
+                <% }) %>
+            <% } %>
+        </select>
+        <label for="tag">---></label>
+        <select name="tag" id="tag">
+            <% if (locals.tags) { %>
+                <% tags.forEach(element => { %>
+                    <option value="<%= element.name %>"><%= element.name %></option>
+                <% }) %>
+            <% } %>
+        </select>
+        <input type="submit" value="Envoyer">
     </form>
 
+    <% if (locals.wu) { %>
+        <% wu.forEach(element => { %>
+            <a href="/api/get/tagsfromwu?wu=<%= element.name %>"><%= element.name %></a>
+        <% }) %>
+    <% } %>
+
+    
     <h1>Tags</h1>
     <ul>
     <% if (locals.tags) { %>
