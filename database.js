@@ -30,4 +30,13 @@ db.serialize(() => {
     db.run('COMMIT;');
 });
 
-module.exports = { db }
+queryAll = async (db, query) => {
+    return new Promise((resolve, reject) => {
+        db.all(query,(err, row) => {
+            if (err) reject(err); // I assume this is how an error is thrown with your db callback
+            resolve(row);
+        });
+    });
+}
+
+module.exports = { db, queryAll }

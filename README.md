@@ -29,6 +29,8 @@ It is used with `require('dotenv')` and then `process.env.constName` inside js f
 > - Under /views are ejs files (just like html but with logic things)
 > 
 > - Under /public are static files (images, css, client-side js, ...)
+>
+> - Under /routes are the server routing (api, admin, ...)
 
 ## Accessing via git
 [See this git cheatsheet](https://about.gitlab.com/images/press/git-cheat-sheet.pdf)
