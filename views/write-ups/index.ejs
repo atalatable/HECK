@@ -13,25 +13,29 @@
             </div>
             <div class="content">
                 <div class="inner">
-                    <article>
-                        <div class="content">
-                            <h3>WU Title</h3>
-                            <small>04/01/2022</small>
-                            <p>
-                                Ipsum asperiores iste quo expedita est
-                                voluptatum. Qui saepe tempore alias debitis
-                                quis Adipisicing eaque explicabo delectus
-                                eum consectetur, tempore?
-                            </p>
-                        </div>
-                        <div class="tags">
-                            <ul>
-                                <li><a href="#">Tag #1</a></li>
-                                <li><a href="#">Tag #2</a></li>
-                            </ul>
-                        </div>
-                    </article>
-                    <article>
+                    <% if (locals.wus) { %>
+                        <% wus.forEach(wu => { %> 
+                            <article>
+                                <div class="content">
+                                    <h3><%- wu.name %></h3>
+                                    <small>wu.data</small>
+                                    <p>
+                                        Ipsum asperiores iste quo expedita est
+                                        voluptatum. Qui saepe tempore alias debitis
+                                        quis Adipisicing eaque explicabo delectus
+                                        eum consectetur, tempore?
+                                    </p>
+                                </div>
+                                <div class="tags">
+                                    <ul>
+                                        <li><a href="#">Tag #1</a></li>
+                                        <li><a href="#">Tag #2</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+                        <% }) %>
+                    <% } %>
+                        <article>
                         <div class="content">
                             <h3>WU Title</h3>
                             <small>04/01/2022</small>

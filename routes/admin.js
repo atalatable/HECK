@@ -11,7 +11,8 @@ adminRoute.get('/', async (req, res) => {
     if(isConnected(req)) {
         let tags = await queryAll(db, 'SELECT * FROM tags');
         let categories = await queryAll(db, 'SELECT * FROM categories;');
-        res.render('admin/index', {tags: tags, categories: categories});
+        let wu = await queryAll(db, "SELECT name FROM write_ups;");
+        res.render('admin/index', {tags: tags, categories: categories, wu: wu});
     } else {
         res.redirect('/admin/login');
     }

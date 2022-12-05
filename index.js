@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 let cron = require('node-cron');
 require('dotenv').config();
 const { sendMail } = require('./mail.js');
-const { db } = require('./database.js');
+const { db, queryAll } = require('./database.js');
 
 const { apiRoute } = require('./routes/api');
 const { adminRoute } = require('./routes/admin');
@@ -43,8 +43,10 @@ app.get('/home', (req, res) => {
     res.render('home');
 });
 
-app.get('/write-ups', (req, res) => {
-    res.render('write-ups/index');
+app.get('/write-ups', async (req, res) => {
+    const wus = await queryAll(db, "SELECT wu.*, c.name AS 'catName' FROM write_ups wu INNER JOIN categories c ON wu.catid == c.id");
+    
+    res.render('write-ups/index', {wus: wus});
 });
 
 app.get('/logout', (req, res) => {

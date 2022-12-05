@@ -12,6 +12,7 @@ CREATE TABLE write_ups (
   name VARCHAR NOT NULL DEFAULT "Default name",
   date DATE NOT NULL,
   catid INTEGER,
+  wu_description VARCHAR DEFAULT "This is a write-up description",
   FOREIGN KEY(catid) REFERENCES categories(id)
 );
 
