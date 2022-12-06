@@ -1,111 +1,49 @@
-<%- include('../partials/header.ejs', {title: "Write-ups"}); %> 
+<%- include('../partials/header.ejs', {title: "Write-ups" }); %>
 
-<main>
-    <section>
-        <h2>Write-ups</h2>
-        <hr />
-        <div class="accordion">
-            <div class="item">
-                <button>
-                    <span>{WRITEUP CATEGORY}</span>
-                    <i class="fa-solid fa-caret-right"></i>
-                </button>
-            </div>
-            <div class="content">
-                <div class="inner">
-                    <% if (locals.wus) { %>
-                        <% wus.forEach(wu => { %> 
-                            <article>
-                                <div class="content">
-                                    <h3><%- wu.name %></h3>
-                                    <small>wu.data</small>
-                                    <p>
-                                        Ipsum asperiores iste quo expedita est
-                                        voluptatum. Qui saepe tempore alias debitis
-                                        quis Adipisicing eaque explicabo delectus
-                                        eum consectetur, tempore?
-                                    </p>
-                                </div>
-                                <div class="tags">
-                                    <ul>
-                                        <li><a href="#">Tag #1</a></li>
-                                        <li><a href="#">Tag #2</a></li>
-                                    </ul>
-                                </div>
-                            </article>
-                        <% }) %>
-                    <% } %>
-                        <article>
+    <main>
+        <section>
+            <h2>Write-ups</h2>
+            <hr />
+            <% if (locals.wus && locals.categories) { %>
+                <% categories.forEach(categorie => { %>
+                    <div class="accordion">
+                        <div class="item">
+                            <button>
+                                <span><%= categorie.name %></span>
+                                <i class="fa-solid fa-caret-right"></i>
+                            </button>
+                        </div>
                         <div class="content">
-                            <h3>WU Title</h3>
-                            <small>04/01/2022</small>
-                            <hr />
-                            <p>
-                                Ipsum asperiores iste quo expedita est
-                                voluptatum. Qui saepe tempore alias debitis
-                                quis Adipisicing eaque explicabo delectus
-                                eum consectetur, tempore?
-                            </p>
+                            <div class="inner">
+                                    <% wus.forEach(wu => { %>
+                                        <% if(wu.catid == categorie.id) { %>
+                                        <article>
+                                            <div class="content">
+                                                <h3>
+                                                    <%- wu.name %>
+                                                </h3>
+                                                <small>wu.data</small>
+                                                <p>
+                                                    Ipsum asperiores iste quo expedita est voluptatum. Qui saepe
+                                                    tempore alias debitis quis Adipisicing eaque explicabo delectus
+                                                    eum consectetur, tempore?
+                                                </p>
+                                            </div>
+                                        <div class="tags">
+                                            <ul>
+                                                <li><a href="#">Tag #1</a></li>
+                                                <li><a href="#">Tag #2</a></li>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                    <% } %>
+                                <% }) %>
+                            </div>
                         </div>
-                        <div class="tags">
-                            <ul>
-                                <li><a href="#">Tag #1</a></li>
-                                <li><a href="#">Tag #2</a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <div class="accordion">
-            <div class="item">
-                <button>
-                    <span>{WRITEUP CATEGORY}</span>
-                    <i class="fa-solid fa-caret-right"></i>
-                </button>
-            </div>
-            <div class="content">
-                <div class="inner">
-                    <article>
-                        <div class="content">
-                            <h3>WU Title</h3>
-                            <small>04/01/2022</small>
-                            <p>
-                                Ipsum asperiores iste quo expedita est
-                                voluptatum. Qui saepe tempore alias debitis quis
-                                Adipisicing eaque explicabo delectus eum
-                                consectetur, tempore?
-                            </p>
-                        </div>
-                        <div class="tags">
-                            <ul>
-                                <li><a href="#">Tag #1</a></li>
-                                <li><a href="#">Tag #2</a></li>
-                            </ul>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="content">
-                            <h3>WU Title</h3>
-                            <small>04/01/2022</small>
-                            <p>
-                                Ipsum asperiores iste quo expedita est
-                                voluptatum. Qui saepe tempore alias debitis quis
-                                Adipisicing eaque explicabo delectus eum
-                                consectetur, tempore?
-                            </p>
-                        </div>
-                        <div class="tags">
-                            <ul>
-                                <li><a href="#">Tag #1</a></li>
-                                <li><a href="#">Tag #2</a></li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+                    </div>
+                <% }) %>
+                <% } %>
+        </section>
+    </main>
 
-<%- include('../partials/footer.ejs'); %> 
+    <%- include('../partials/footer.ejs'); %>

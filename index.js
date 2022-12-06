@@ -44,9 +44,10 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/write-ups', async (req, res) => {
-    const wus = await queryAll(db, "SELECT wu.*, c.name AS 'catName' FROM write_ups wu INNER JOIN categories c ON wu.catid == c.id");
-    
-    res.render('write-ups/index', {wus: wus});
+    const cat = await queryAll(db, "SELECT * FROM categories");
+    const wus = await queryAll(db, "SELECT * FROM write_ups");
+        
+    res.render('write-ups/index', {categories: cat, wus: wus});
 });
 
 app.get('/logout', (req, res) => {
