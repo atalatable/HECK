@@ -103,7 +103,7 @@ body.light {
   background: var(--color-step-400); 
 }
 
-body {
+#__next {
     background-color: var(--background-color);
     color: var(--text-color);
     height: 100%;
@@ -247,6 +247,15 @@ html:has(#mobile-nav.show), body:has(#mobile-nav.show) {
     top: 1em;
 }
 
+.not_found_div {
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    gap:30px;
+    text-align:center;
+    margin-top:50px;
+}
+
 /*
  * Main section styling
  */
@@ -286,7 +295,7 @@ main section hr {
     margin-bottom: 0.75em;
 }
 
-main #menu-profile img {
+main #menu-profile .img {
     border-radius: 100%;
     margin-bottom: 20px;
 }
@@ -306,8 +315,9 @@ main section.wrapper .content {
     justify-content: center;
 }
 
-main section.wrapper .content img {
+main section.wrapper .content .img {
     height: 128px;
+    width: auto;
     border-radius: 100%;
 }
 

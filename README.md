@@ -1,38 +1,34 @@
-# Heck
-This is a bit more complicated
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-1) You need to have nodejs installed and setup
-2) Open your terminal in the "back" folder and type `npm install`
-3) To run a dev server just run `npm run dev` in the back folder (or `node index.js`)
-4) It should be up and running on port 3000
+## Getting Started
 
-### TODO
-You must add a file named `.env` at the root
+First, run the development server:
 
-inside of it you have to write 
-```dotenv
-port = 3000
-login_key = prout # (the key that will be used to login and update w-u)
-
-# Mail informations
-mail = yourmail@mail.com
-mail_password = y0urM4ilp4ssw0rd666
-mail_smtp = smtp.server.com # (see your mail settings to view smtp server and port)
-mail_port = 587
+```bash
+npm run dev
+# or
+yarn dev
 ```
-It is used with `require('dotenv')` and then `process.env.constName` inside js files
 
-> We are using ExpressJS for the back end
-> 
-> - index.js is the entry point [See ExpressJs quick Guide](https://expressjs.com/) to understand
-> 
-> - Under /views are ejs files (just like html but with logic things)
-> 
-> - Under /public are static files (images, css, client-side js, ...)
->
-> - Under /routes are the server routing (api, admin, ...)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Accessing via git
-[See this git cheatsheet](https://about.gitlab.com/images/press/git-cheat-sheet.pdf)
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-If any problem ask @Atalata or @KrishenK
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
