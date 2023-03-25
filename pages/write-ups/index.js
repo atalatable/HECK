@@ -1,19 +1,37 @@
 import { getAllCategories } from "../../helpers/md";
 
-export default function WriteUpsHome() {
+function WriteUpsHome({ cats }) {
     return (
         <>
-        <div>
-            {/* {cat} */}
-        </div>
+        <section>
+
+            <h2>Write-ups</h2>
+            <hr />
+                {cats.map((cat) => 
+                    <div className="accordion">
+                        <div className="item">
+                            <button>
+                                <span>{cat}</span>
+                                <i className="fa-solid fa-caret-right"></i>
+                            </button>
+                        </div>
+                        <div className="content">
+                            <div className="inner">
+                            </div>
+                        </div>
+                    </div>
+                )}
+        </section>
         </>
     )
 }
 
-const getStaticProps = async () => {
-    const test = await getAllCategories("posts");
+export const getStaticProps = async () => {
+    const cats = getAllCategories("posts");
 
-    console.log(test)
+    return {
+        props: { cats },
+    };
 };
 
-getStaticProps()
+export default WriteUpsHome;

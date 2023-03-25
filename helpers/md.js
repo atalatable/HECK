@@ -14,12 +14,8 @@ export function getFileContent(filename, folder) {
 export function getAllCategories(folder) {
     const POST_PATH = getPath(folder);
 
-    fs.readdirSync(POST_PATH, { withFileTypes: true }, (error, files) => {
-        const directories = files.filter((item) => item.isDirectory()).map((item) => item.name)
-
-        console.log(directories)
-
-        return directories
-    })
+    return fs.readdirSync(POST_PATH, { withFileTypes: true })
+    .filter((item) => item.isDirectory())
+    .map((item) => item.name);
 
 }
