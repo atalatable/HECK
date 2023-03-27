@@ -23,17 +23,18 @@ function WriteUpsHome({ out }) {
                                                 <h3>
                                                     {post.frontmatter.title}
                                                 </h3>
-                                                <small>wu.data</small>
+                                                <small>{post.frontmatter.publishedDate}</small>
                                                 <p>
-                                                    Ipsum asperiores iste quo expedita est voluptatum. Qui saepe
-                                                    tempore alias debitis quis Adipisicing eaque explicabo delectus
-                                                    eum consectetur, tempore?
+                                                    {post.frontmatter.description}
                                                 </p>
                                             </div>
                                         <div className="tags">
                                             <ul>
-                                                <li><a href="#">Tag #1</a></li>
-                                                <li><a href="#">Tag #2</a></li>
+                                                {post.frontmatter.tags.map((tag) => (
+                                                <li key={tag}>
+                                                    <a href="#">{tag}</a>
+                                                </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </article>
@@ -52,7 +53,6 @@ export const getStaticProps = async () => {
 
     const out = categories.map((category) => {
         const posts = getAllPosts(`posts/${category}`);
-        console.log(posts.frontmatter)
         return { category, posts };
     });
 

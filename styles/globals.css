@@ -357,6 +357,7 @@ article .tags {
 
 article .tags ul {
     list-style: none;
+    text-align: right;
 }
 
 article:not(:last-of-type) {
