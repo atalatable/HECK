@@ -37,6 +37,16 @@ export const getAllPosts = (folder) => {
         });
 };
 
+export const getAllPublished = (folder) => {
+    const posts = getAllPosts(folder)
+
+    const published = posts.filter((post) => {
+        return post.frontmatter.isPublished === true
+    })
+
+    return published;
+}
+
 export const getSinglePost = (slug, folder) => {
     const source = getFileContent(`${slug}.md`, folder);
     const { data: frontmatter, content } = matter(source);

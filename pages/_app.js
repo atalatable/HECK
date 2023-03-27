@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import Layout from '../components/layout';
 import '../styles/globals.css';
 

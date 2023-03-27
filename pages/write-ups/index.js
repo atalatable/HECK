@@ -1,4 +1,4 @@
-import { getAllCategories, getAllPosts } from "../../helpers/md";
+import { getAllCategories, getAllPublished } from "../../helpers/md";
 
 function WriteUpsHome({ out }) {
   return (
@@ -47,7 +47,7 @@ export const getStaticProps = async () => {
     const categories = getAllCategories("posts");
 
     const out = categories.map((category) => {
-        const posts = getAllPosts(`posts/${category}`);
+        const posts = getAllPublished(`posts/${category}`);
         return { category, posts };
     });
 
