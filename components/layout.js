@@ -21,7 +21,6 @@ export default function Layout({ children }) {
                     <Link href="/"><li data-command-text="cd home">~/home</li></Link>
                     <Link href="/write-ups"><li data-command-text="cd write-ups">~/write-ups</li></Link>
                     <Link href="/whoami"><li data-command-text="cd whoami">~/whoami</li></Link>
-                    <Link href="/admin"><li data-command-text="cd admin">~/admin</li></Link>
                 </ul>
                 <i className="fa-solid fa-bars" id="burger-menu"></i>
             </nav>
@@ -31,7 +30,6 @@ export default function Layout({ children }) {
                     <Link href="/"><li>~/home</li></Link>
                     <Link href="/write-ups"><li>~/write-ups</li></Link>
                     <Link href="/whoami"><li>~/whoami</li></Link>
-                    <Link href="/admin"><li>~/admin</li></Link>
                 </ul>
             </nav>
         </header>

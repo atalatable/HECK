@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAllCategories, getAllPublished } from "../../helpers/md";
 
 function WriteUpsHome({ out }) {
@@ -10,7 +11,7 @@ function WriteUpsHome({ out }) {
           <div key={category} className="accordion open">
             <div className="item">
               <button>
-                <span>{category}</span>
+                <span><Link href={`write-ups/${category}`}>{category}</Link></span>
                 <i className="fa-solid fa-caret-right"></i>
               </button>
             </div>
