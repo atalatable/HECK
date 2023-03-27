@@ -19,3 +19,30 @@ export function getAllCategories(folder) {
     .map((item) => item.name);
 
 }
+
+export const getAllPosts = (folder) => {
+
+    const POSTS_PATH = getPath(folder)
+
+    return fs
+        .readdirSync(POSTS_PATH) // get files in directory
+        .map((fileName) => { // map over each file
+            const source = getFileContent(fileName, folder); // retrieve the file contents
+            const slug = fileName.replace(/\\.md?$/, ""); // get the slug from the filename
+            const { data } = matter(source); // extract frontmatter
+            return {
+                frontmatter: data,
+                slug: slug,
+            };
+        });
+};
+
+export const getSinglePost = (slug, folder) => {
+    const source = getFileContent(`${slug}.md`, folder);
+    const { data: frontmatter, content } = matter(source);
+
+    return {
+        frontmatter,
+        content,
+    };
+};
