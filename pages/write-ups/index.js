@@ -20,7 +20,7 @@ function WriteUpsHome({ out }) {
                 {posts.map((post) => (
                   <article key={post.slug}>
                     <div className="content">
-                      <h3>{post.frontmatter.title}</h3>
+                    <h3><Link href={`write-ups/${category}/${post.slug}`}>{post.frontmatter.title}</Link></h3>
                       <small>{post.frontmatter.publishedDate}</small>
                       <p>{post.frontmatter.description}</p>
                     </div>

@@ -28,7 +28,7 @@ export const getAllPosts = (folder) => {
         .readdirSync(POSTS_PATH) // get files in directory
         .map((fileName) => { // map over each file
             const source = getFileContent(fileName, folder); // retrieve the file contents
-            const slug = fileName.replace(/\\.md?$/, ""); // get the slug from the filename
+            const slug = fileName.replace(/.md$/, ""); // get the slug from the filename
             const { data } = matter(source); // extract frontmatter
             return {
                 frontmatter: data,

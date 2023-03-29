@@ -109,5 +109,3 @@
     }
 
 })();
-
-console.log("test")

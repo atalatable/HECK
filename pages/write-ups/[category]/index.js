@@ -36,10 +36,12 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-    const categoryNames = getAllCategories("posts");
+const categoryNames = getAllCategories("posts");
+
     const paths = categoryNames.map((categoryName) => ({
         params: { category: categoryName },
     }));
+
     return { paths, fallback: false };
 }
 
