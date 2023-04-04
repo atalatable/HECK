@@ -16,7 +16,7 @@ export default function writeups({ post, category }) {
         </ul>
         <hr/>
         <div className="wu-content">
-            <div className={styles.prose}>
+            <div className={`${styles.prose} ${styles["prose-invert"]}`}>
                 <ReactMarkdown>{post.content}</ReactMarkdown>
             </div>
         </div>
