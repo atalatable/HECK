@@ -300,8 +300,18 @@ main #menu-profile .img {
     margin-bottom: 20px;
 }
 
+main #menu-profile .socials a {
+    color: var(--color-step-850);
+}
+
 main #menu-profile {
     text-align: center;
+}
+
+main #menu-profile .socials {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 main #menu-profile .socials i {

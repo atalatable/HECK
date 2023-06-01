@@ -9,8 +9,8 @@ export default function Home({ posts }) {
     <section className="nobackground" id="menu-profile">
         <Image className="img" src="https://avatars.githubusercontent.com/u/82236839?v=4" alt="" width={288} height={288}/>
         <div className="socials">
-            <i data-command-text="ping discord" className="fab fa-discord"></i>
-            <i data-command-text="ping github" className="fab fa-github"></i>
+            <Link href="https://github.com/" target='_blank'><i data-command-text="ping discord" className="fab fa-discord"></i></Link>
+            <Link href="https://root-me.org/" target='_blank'><i data-command-text="ping github" className="fab fa-github"></i></Link>
         </div>
     </section>
     <section>

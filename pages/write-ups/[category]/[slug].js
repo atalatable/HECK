@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Writeups from '../../../components/writeups';
 import { getSinglePost, getAllCategories, getAllPublished } from "../../../helpers/md";
 
