@@ -56,3 +56,25 @@ export const getSinglePost = (slug, folder) => {
         content,
     };
 };
+
+export const getTwoLastPosts = (folder) => {
+    const categories = getAllCategories("posts");
+
+    const out = [];
+
+    categories.forEach((cat) => {
+        const props = getAllPublished(`posts/${cat}`);
+        props.forEach(prop => {
+            prop.category = cat;
+            out.push(prop);
+        });
+    });
+
+    out.sort((a, b) => {
+        const dateA = new Date(a.frontmatter.publishedDate.split('/').reverse().join('/'));
+        const dateB = new Date(b.frontmatter.publishedDate.split('/').reverse().join('/'));
+        return dateA - dateB;
+    });
+
+    return out.slice(-2).reverse();
+}

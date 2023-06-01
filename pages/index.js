@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Script from 'next/script';
+import { getTwoLastPosts } from '../helpers/md';
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <>
     <section className="nobackground" id="menu-profile">
@@ -14,40 +16,25 @@ export default function Home() {
     <section>
         <h2>Latest news</h2>
         <hr />
-        <article>
-            <div className="content">
-                <h3>Post title</h3>
-                <small>26/10/2022</small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit. Minus iste, quos nisi cumque iusto perferendis
-                    id qui dolore hic doloremque numquam!
-                </p>
-            </div>
-            <div className="tags">
-                <ul>
-                    <li><a href="#">Tag #1</a></li>
-                    <li><a href="#">Tag #2</a></li>
-                </ul>
-            </div>
-        </article>
-        <article>
-            <div className="content">
-                <h3>Post title</h3>
-                <small>26/10/2022</small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit. Minus iste, quos nisi cumque iusto perferendis
-                    id qui dolore hic doloremque numquam!
-                </p>
-            </div>
-            <div className="tags">
-                <ul>
-                    <li><a href="#">Tag #1</a></li>
-                    <li><a href="#">Tag #2</a></li>
-                </ul>
-            </div>
-        </article>
+
+        {posts.map((post) => (
+            <article key={post.slug}>
+                <div className="content">
+                    <h3><Link href={"write-ups/" + post.category + "/" + post.slug} >{post.category} - {post.frontmatter.title}</Link></h3>
+                    <small>{post.frontmatter.publishedDate}</small>
+                    <p>{post.frontmatter.description}</p>
+                </div>
+                <div className="tags">
+                    <ul>
+                    {post.frontmatter.tags.map((tag) => (
+                        <li key={tag}>
+                            <a href="#">{tag}</a>
+                        </li>
+                    ))}
+                    </ul>
+                </div>
+            </article>
+        ))}
     </section>
     <section className="nobackground wrapper">
         <h2>Les coupains</h2>
@@ -61,4 +48,12 @@ export default function Home() {
     <Script src="/script/main.js" />
     </>
   )
+}
+
+export const getStaticProps = async () => {
+    const posts = getTwoLastPosts();
+
+    return {
+        props: { posts },
+    };
 }
