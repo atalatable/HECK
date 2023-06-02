@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function Layout({ children }) {
     return (
@@ -13,10 +14,12 @@ export default function Layout({ children }) {
         <div id="theme-toggler">
             <i className="fa-solid fa-sun"></i>
         </div>
+
+        <Script src="/script/main.js" />
         
         <header>
             <nav>
-                <h1><Link href="/">/Username $ </Link><span className="command"></span></h1>
+                <h1><Link href="/">@Username:/ $ </Link><span className="command"></span></h1>
                 <ul>
                     <Link href="/"><li data-command-text="cd home">~/home</li></Link>
                     <Link href="/write-ups"><li data-command-text="cd write-ups">~/write-ups</li></Link>
@@ -42,7 +45,7 @@ export default function Layout({ children }) {
                     <li><a href="#">Root-me</a></li>
                     <li><a href="#"></a></li>
                 </ul>
-                <p>@ Username 2022</p>
+                <p>Site made by Atalata and KrishenK</p>
                 <ul id="sitemap">
                     <h3>Site map</h3>
                     <li><Link href="/">/home</Link></li>

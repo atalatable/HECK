@@ -57,7 +57,7 @@ export const getSinglePost = (slug, folder) => {
     };
 };
 
-export const getTwoLastPosts = (folder) => {
+export const getTwoLastPosts = (amount) => {
     const categories = getAllCategories("posts");
 
     const out = [];
@@ -76,5 +76,5 @@ export const getTwoLastPosts = (folder) => {
         return dateA - dateB;
     });
 
-    return out.slice(-2).reverse();
+    return out.slice(-amount).reverse();
 }

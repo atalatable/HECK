@@ -1,6 +1,5 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styles from '../styles/writeups.module.css'
-import hljs from "highlight.js";
 
 export default function writeups({ post, category }) {
     return(

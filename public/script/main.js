@@ -1,7 +1,7 @@
 (function () {
     // Command writer
     var command = document.querySelector(".command");
-    [...document.querySelectorAll("* [data-command-text]")].forEach((el) => {
+    [...document.querySelectorAll("header [data-command-text], footer [data-command-text]")].forEach((el) => {
         var i = 0;
         var txt = el.dataset.commandText;
         var speed = 30;
@@ -84,7 +84,7 @@
     toggleDarkTheme(prefersDark.matches);
 
     function toggleDarkTheme(shouldAdd) {
-    document.body.classList.toggle('light', shouldAdd);
+        document.body.classList.toggle('light', shouldAdd);
     }
 
     // Listen for changes to the prefers-color-scheme media query

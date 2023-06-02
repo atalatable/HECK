@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { getAllCategories, getAllPublished } from "../../../helpers/md";
 
 function Page({ category, posts }) {
@@ -24,6 +25,7 @@ function Page({ category, posts }) {
                 </div>
             </article>
         ))}
+        <Script src="/script/typewrite.js" />
         </>
     )
 }

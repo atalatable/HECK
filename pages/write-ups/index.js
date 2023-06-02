@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllCategories, getAllPublished } from "../../helpers/md";
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
+import Script from "next/script";
 
 function WriteUpsHome({ out }) {
 
@@ -19,14 +20,14 @@ function WriteUpsHome({ out }) {
         <h2>Write-ups</h2>
         <hr />
         {out.map(({ category, posts }) => (
-          <div className={`accordion ${isOpen[category] ? 'open' : ''}`}>
+          <div key={"k1" + category} className={`accordion ${isOpen[category] ? 'open' : ''}`}>
             <div onClick={() => handleAccordion(category)} key={category} className="item">
               <button>
                 <span><Link href={`write-ups/${category}`}>{category}</Link></span>
                 <i className="fa-solid fa-caret-right"></i>
               </button>
             </div>
-            <div className="content">
+            <div className="content" key={"k" + category}>
               <div className="inner">
                 {posts.map((post) => (
                   <article key={post.slug}>
@@ -51,6 +52,7 @@ function WriteUpsHome({ out }) {
           </div>
         ))}
       </section>
+      <Script src="/script/typewrite.js" />
     </>
   );
 }
