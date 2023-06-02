@@ -443,9 +443,12 @@ article:not(:last-of-type) {
 }
 
 .accordion > .content {
-    /* max-height: 0px; */
+    max-height: 0px;
     overflow: hidden;
-    transition: max-height 0.3s cubic-bezier(0.25, 0.8, 0.5, 1) 0s;
+    transition: max-height 1s cubic-bezier(0.25, 0.8, 0.5, 1) 0s;
+}
+.accordion.open > .content {
+    max-height: fit-content;
 }
 
 .accordion > .content .inner {

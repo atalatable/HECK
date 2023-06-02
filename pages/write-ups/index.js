@@ -1,15 +1,26 @@
 import Link from "next/link";
 import { getAllCategories, getAllPublished } from "../../helpers/md";
+import { useState, useRef, useEffect } from 'react';
 
 function WriteUpsHome({ out }) {
+
+  const [isOpen, setIsOpen] = useState({});
+
+  function handleAccordion(category) {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [category]: !prevState[category]
+    }));
+  }
+
   return (
     <>
       <section>
         <h2>Write-ups</h2>
         <hr />
         {out.map(({ category, posts }) => (
-          <div key={category} className="accordion open">
-            <div className="item">
+          <div className={`accordion ${isOpen[category] ? 'open' : ''}`}>
+            <div onClick={() => handleAccordion(category)} key={category} className="item">
               <button>
                 <span><Link href={`write-ups/${category}`}>{category}</Link></span>
                 <i className="fa-solid fa-caret-right"></i>

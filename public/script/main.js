@@ -39,15 +39,6 @@
         prevScroll = window.scrollY;
     });
 
-    // Accordion trigger
-    [...document.querySelectorAll('.accordion')].forEach(el => {
-        el.querySelector('.item').addEventListener('click', _ => {
-            var content = el.querySelector('.content');
-            content.style.maxHeight = content.style.maxHeight == '' ? `${content.scrollHeight}px` : '';
-            el.classList.toggle('open');
-        })
-    })
-
    // Theme toggler
     document.querySelector("#theme-toggler").addEventListener('click', (e) => {
         const button = document.querySelector("#theme-toggler");
