@@ -14,10 +14,19 @@ export function getFileContent(filename, folder) {
 export function getAllCategories(folder) {
     const POST_PATH = getPath(folder);
 
-    return fs.readdirSync(POST_PATH, { withFileTypes: true })
+    let cat = fs.readdirSync(POST_PATH, { withFileTypes: true })
     .filter((item) => item.isDirectory())
     .map((item) => item.name);
 
+    if( cat.length > 1 ) {
+        return cat.sort((a, b) => {
+            let s1 = fs.statSync(path.join(POST_PATH, a));
+            let s2 = fs.statSync(path.join(POST_PATH, b));
+            return s2.mtimeMs - s1.mtimeMs;
+        })
+    } else {
+        return cat;
+    }
 }
 
 export const getAllPosts = (folder) => {
