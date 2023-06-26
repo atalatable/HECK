@@ -48,10 +48,17 @@
 
         if (window.localStorage.getItem("theme") === "dark") {
             document.body.classList.add("light");
+            try {
+                document.querySelector(".wu-content").children[0].classList.remove("writeups_prose-invert__uamBY");
+            } catch (e) {}
 
             window.localStorage.setItem("theme", "light");
         } else {
             document.body.classList.remove("light");
+            try {
+                document.querySelector(".wu-content").children[0].classList.add("writeups_prose-invert__uamBY");
+            } catch (e) {}
+
 
             window.localStorage.setItem("theme", "dark");
         }
