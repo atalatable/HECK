@@ -11,22 +11,42 @@ export function getFileContent(filename, folder) {
     return fs.readFileSync(path.join(_PATH, filename), 'utf-8')
 }
 
+/*
+*   Return all categories ordered by latest post date
+*/
 export function getAllCategories(folder) {
     const POST_PATH = getPath(folder);
 
-    let cat = fs.readdirSync(POST_PATH, { withFileTypes: true })
+    let timing = {}
+
+    let cats = fs.readdirSync(POST_PATH, { withFileTypes: true })
     .filter((item) => item.isDirectory())
     .map((item) => item.name);
 
-    if( cat.length > 1 ) {
-        return cat.sort((a, b) => {
-            let s1 = fs.statSync(path.join(POST_PATH, a));
-            let s2 = fs.statSync(path.join(POST_PATH, b));
-            return s2.mtimeMs - s1.mtimeMs;
-        })
-    } else {
-        return cat;
-    }
+    cats.map(cat => {
+        const posts = getAllPublished(`posts/${cat}`);
+
+        posts.sort((a, b) => {
+            const dateA = new Date(a.frontmatter.publishedDate.split('/').reverse().join('/'));
+            const dateB = new Date(b.frontmatter.publishedDate.split('/').reverse().join('/'));
+            return dateB - dateA;
+        });
+
+        timing[cat] = posts[0].frontmatter.publishedDate;
+    });
+
+    const ordered = Object.entries(timing).sort(([, dateA], [, dateB]) => {
+        const [dayA, monthA, yearA] = dateA.split('/');
+        const [dayB, monthB, yearB] = dateB.split('/');
+        const dateObjA = new Date(`${monthA}/${dayA}/${yearA}`);
+        const dateObjB = new Date(`${monthB}/${dayB}/${yearB}`);
+        return dateObjB - dateObjA;
+    }).reduce((acc, [key]) => {
+        acc.push(key);
+        return acc;
+    }, []);
+
+    return ordered
 }
 
 export const getAllPosts = (folder) => {
@@ -43,7 +63,7 @@ export const getAllPosts = (folder) => {
                 frontmatter: data,
                 slug: slug,
             };
-        });
+        })
 };
 
 export const getAllPublished = (folder) => {
@@ -66,6 +86,7 @@ export const getSinglePost = (slug, folder) => {
     };
 };
 
+// orders by last modified file date
 export const getTwoLastPosts = (amount) => {
     const categories = getAllCategories("posts");
 
