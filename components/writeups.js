@@ -32,23 +32,34 @@ export default function Writeups({ post, category }) {
             </div>
         </article>
 
+        <ul id="info-wu">
+            {post.frontmatter.author ? <li><u>Author</u> : {post.frontmatter.author}</li> : ""}
+            {post.frontmatter.difficulty ? <li><u>Difficulty</u> : {post.frontmatter.difficulty}</li> : ""}
+            {post.frontmatter.challDescription ? <li><u>Description</u> : {post.frontmatter.challDescription}</li> : ""}
+        </ul>
+
         <hr/>
         <div className="wu-content">
             <div className={`${styles.prose} ${theme == "dark" ? styles["prose-invert"] : ""}`}>
                 <ReactMarkdown
                     components={{
+                        // Used for syntax highliting
                         code({node, inline, className, children, ...props}) {
                             const match = /language-(\w+)/.exec(className || '');
                             return !inline && match ? (
                                 <SyntaxHighliter
                                     {...props}
-                                    style={vscDarkPlus}
+                                    style={{ ...vscDarkPlus, fontSize: '2em' }}
                                     language={match[1]}
                                     PreTag="div"
                                 >
                                 {String(children).replace(/\n$/, '')}
                                 </SyntaxHighliter>
                             ) : (<code {...props} className={className}>{children}</code>)
+                        },
+                        // Change all links to blank links
+                        a({node, inline, className, children, ...props}) {
+                            return (<a {...props} target="_blank" className={className}>{children}</a>)
                         }
                     }}
                 >

@@ -265,8 +265,9 @@ main {
     flex-direction: column;
     gap: 1em;
     margin: 1em auto;
-    width: var(--page-width);
+    border-radius: 10px;
     max-width: 75%;
+    width: var(--page-width);
     height: 100%;
     margin-top: calc(1em + var(--header-height));
 }
@@ -318,6 +319,15 @@ main #menu-profile .socials i {
     font-size: 40px;
 }
 
+main #menu-profile .socials img {
+    user-select: none;
+    filter: invert(1);
+    width: 40px;
+}
+
+body.light main #menu-profile .socials img {
+    filter: invert(0);
+}
 main section.wrapper .content {
     display: flex;
     gap: 1.5em;
@@ -337,6 +347,16 @@ main section.wrapper h2 {
 
 main section.wrapper hr {
     margin-inline: auto;
+}
+
+#info-wu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#info-wu li {
+    color: var(--article-color);
+    list-style-type: none;
 }
 
 article {

@@ -59,7 +59,6 @@
                 document.querySelector(".wu-content").children[0].classList.add("writeups_prose-invert__uamBY");
             } catch (e) {}
 
-
             window.localStorage.setItem("theme", "dark");
         }
     })

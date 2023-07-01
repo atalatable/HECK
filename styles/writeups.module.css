@@ -207,13 +207,17 @@
   font-size: 0.875em;
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *))::before {
-  content: "`";
+.prose code span {
+  font-size: 1.1em;
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
-  content: "`";
+.prose code:not([class^="language"]) {
+  color: rgb(212,212,212);
+  background-color: rgb(20,20,20);
+  padding: 2px 5px;
+  border-radius: 5px;
 }
+
 
 .prose :where(a code):not(:where([class~="not-prose"] *)) {
   color: inherit;

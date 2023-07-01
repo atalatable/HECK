@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         
         <header>
             <nav>
-                <h1><Link href="/">@Username:/ $ </Link><span className="command"></span></h1>
+                <h1><Link href="/">@Atalata:/ $ </Link><span className="command"></span></h1>
                 <ul>
                     <Link href="/"><li data-command-text="cd home">~/home</li></Link>
                     <Link href="/write-ups"><li data-command-text="cd write-ups">~/write-ups</li></Link>
@@ -42,8 +42,9 @@ export default function Layout({ children }) {
         <footer>
             <div id="footer-container">
                 <ul id="media">
-                    <li><a href="#">Root-me</a></li>
-                    <li><a href="#"></a></li>
+                    <Link href="https://www.root-me.org/atalata" target="_blank" ><li>Root-me</li></Link>
+                    <Link href="https://discord.com/users/400629408312066049" target="_blank" ><li>Discord</li></Link>
+                    <Link href="https://github.com/atalatable/" target="_blank" ><li>Github</li></Link>
                 </ul>
                 <p>Site made by Atalata and KrishenK</p>
                 <ul id="sitemap">

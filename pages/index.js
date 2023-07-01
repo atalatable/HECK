@@ -7,10 +7,11 @@ export default function Home({ posts }) {
   return (
     <>
     <section className="nobackground" id="menu-profile">
-        <Image className="img" src="https://avatars.githubusercontent.com/u/82236839?v=4" alt="" width={288} height={288}/>
+        <Image className="img" src="/images/logo-round.png" alt="" width={280} height={280}/>
         <div className="socials">
-            <Link href="https://discord.com/" target='_blank'><i data-command-text="ping discord" className="fab fa-discord"></i></Link>
-            <Link href="https://github.com/" target='_blank'><i data-command-text="ping github" className="fab fa-github"></i></Link>
+            <Link href="https://discord.com/users/400629408312066049" target='_blank'><i title="Atalata#2363" data-command-text="ping discord" className="fab fa-discord"></i></Link>
+            <Link href="https://github.com/atalatable/" target='_blank'><i data-command-text="ping github" className="fab fa-github"></i></Link>
+            <Link href="https://www.root-me.org/atalata" target='_blank'><img data-command-text="ping root-me" src="/images/rootme.svg" /></Link>
         </div>
     </section>
     <section>
@@ -36,14 +37,14 @@ export default function Home({ posts }) {
             </article>
         ))}
     </section>
-    <section className="nobackground wrapper">
+    {/* <section className="nobackground wrapper">
         <h2>Les coupains</h2>
         <hr />
         <div className="content">
             <Image className="img" src="https://avatars.githubusercontent.com/u/90158435?v=4" alt="" width={128} height={128}/>
             <Image className="img" src="https://avatars.githubusercontent.com/u/82236839?v=4" alt="" width={128} height={128}/>
         </div>
-    </section>
+    </section> */}
 
     <Script src="/script/typewrite.js" />
     </>
@@ -51,7 +52,7 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-    const posts = getTwoLastPosts(1);
+    const posts = getTwoLastPosts(3);
 
     return {
         props: { posts },
